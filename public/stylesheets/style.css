@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+
+.jumbotron.loading {	
+	position: relative;
+}
+
+.jumbotron.loading:before {	
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+    background: rgba(248, 243, 240, .8) url(../images/62157.gif) 50% 50% no-repeat;
+    z-index: 1000;
+}

@@ -1,17 +1,21 @@
 const express = require('express');
+
 const router = express.Router();
+
 const twitter = require('twitter');
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-	const client = new twitter({
-		consumer_key: process.env.TWITTER_CONSUMER_KEY,
-		consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-		access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-		access_token_secret:  process.env.TWITTER_ACCESS_TOKEN_SECRET
-	});
+const client = new twitter({
+	consumer_key: process.env.TWITTER_CONSUMER_KEY,
+	consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+	access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+	access_token_secret:  process.env.TWITTER_ACCESS_TOKEN_SECRET
+});
 
-	client.get('search/tweets', {q: 'marico el que lo lea', count: 100}, (error, tweets, response) => {
+router.get('/', (req, res, next) => {
+	client.get('search/tweets', {
+		q: 'marico el que lo lea', 
+		count: 100
+	}, (error, tweets, response) => {
 		if (error) {
 			throw error;
 		}
@@ -32,19 +36,17 @@ router.get('/', (req, res, next) => {
 
 		let number = getRandomInt(0, 99);
 
-		res.send(list[number]);
+		res.render('index', {
+			tweet: list[number]
+		});
 	});
 });
 
 router.get('/api', (req, res, next) => {
-	const client = new twitter({
-		consumer_key: process.env.TWITTER_CONSUMER_KEY,
-		consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-		access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-		access_token_secret:  process.env.TWITTER_ACCESS_TOKEN_SECRET
-	});
-
-	client.get('search/tweets', {q: 'marico el que lo lea', count: 100}, (error, tweets, response) => {
+	client.get('search/tweets', {
+		q: 'marico el que lo lea', 
+		count: 100
+	}, (error, tweets, response) => {
 		if (error) {
 			throw error;
 		}
@@ -65,7 +67,7 @@ router.get('/api', (req, res, next) => {
 
 		let number = getRandomInt(0, 99);
 
-		res.send(list[number]);
+		res.json(list[number]);
 	});
 });
 

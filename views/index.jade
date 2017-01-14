@@ -1,5 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    div(class="container")
+        div(class="jumbotron", id="container")
+            if tweet.link
+                a(href=tweet.link, style="color: #333;")
+                    h1 #{tweet.text}
+            else
+                h1 #{tweet.text}
+            p
+                a(class="btn btn-lg btn-success", href="#", role="button", id="refresh") Refrescar
+    footer(class="container")
+        div(class="row")
+            div(class="col-md-6")
+                a(class="twitter-follow-button", href="https://twitter.com/manuelm3z") Follow @manuelm3z
+                a(class="github-button", href="https://github.com/manuelm3z", data-count-href="/manuelm3z/followers", data-count-api="/users/manuelm3z#followers", data-count-aria-label="# followers on GitHub", aria-label="Follow @manuelm3z on GitHub") Follow @manuelm3z
