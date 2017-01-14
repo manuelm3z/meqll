@@ -4,7 +4,7 @@ block content
     div(class="container")
         div(class="jumbotron", id="container")
             if tweet.link
-                a(href=tweet.link, style="color: #333;")
+                a(href=tweet.link, target="_blank", style="color: #333;")
                     h1 #{tweet.text}
             else
                 h1 #{tweet.text}

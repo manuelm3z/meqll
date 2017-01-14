@@ -20,6 +20,10 @@ function refresh(event) {
 					
 					wrapper.href = json.link;
 
+					wrapper.target = '_blank';
+
+					wrapper.style.color = '#333';
+
 					var h1 = document.createElement('H1');
 
 					h1.innerText = json.text;
